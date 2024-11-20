@@ -16,6 +16,7 @@
 #include <memory>
 #include <type_traits>
 #include <vector>
+#include <iostream>
 
 #ifdef __APPLE__
 #include <AvailabilityVersions.h>
@@ -1848,6 +1849,7 @@ public:
 
     int device_wrap_native(const struct halide_device_interface_t *device_interface,
                            uint64_t handle, void *ctx = nullptr) {
+        //std::cout << "---Calling device_wrap_native" << std::endl;
         assert(device_interface);
         dev_ref_count = new DeviceRefCount;
         dev_ref_count->ownership = BufferDeviceOwnership::WrappedNative;
