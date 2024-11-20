@@ -562,6 +562,11 @@ WEAK int halide_cuda_initialize_kernels(void *user_context, void **state_ptr, co
                         << ", ptx_src: " << (void *)ptx_src
                         << ", size: " << size << "\n";
 
+#ifdef WINDOWS
+    if (user_context != nullptr)
+        set_cuda_fun_overrides(); // defined in HalidePyTorchCudaHelpers.h
+#endif
+
     Context ctx(user_context);
     if (ctx.error()) {
         return ctx.error();
