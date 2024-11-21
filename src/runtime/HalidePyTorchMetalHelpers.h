@@ -44,11 +44,7 @@ void sync_stream(void* user_context) {
     MPSStream* stream = ((Halide::PyTorch::UserContext*)user_context)->stream;
 
     // End kernel coalescing => make sure no work is pending a commit
-    //stream->synchronize(at::mps::SyncType::COMMIT);
-    //stream->synchronize(at::mps::SyncType::COMMIT_AND_WAIT);
-    //stream->synchronize(at::mps::SyncType::NONE);
-    //stream->commit(true); // flush
-    stream->commit(false); // don't flush
+    stream->synchronize(at::mps::SyncType::COMMIT);
 }
 
 void metal_pre_run(void* user_context) {
